@@ -3,7 +3,7 @@
 Read `PLAN.md` first. It holds the agreed plan and milestones. Work milestone by milestone, and stop to check in with Darrell at the end of each task rather than running ahead.
 
 ## Hard rules
-- **Model:** always `mistral-large-4`. Never `mistral-large-latest`, which is a different model.
+- **Model:** real runs (benchmarks, recorded runs, the submission) always use `mistral-large-4`. Development and debugging may use the random player or a cheap model. Never use `mistral-large-latest`, which is a different model. See the Budget section in `PLAN.md`.
 - **API key:** loaded from `.env` (`MISTRAL_API_KEY`), which is gitignored. Never print, log or commit the key. Commit `.env.example` with a placeholder only.
 - **stdout belongs to the game.** CommunicationMod reads our stdout as commands, so never `print()` in code that runs under the game. Log to files in `logs/`.
 - Windows 11, PowerShell, Python 3.13. Use a venv (`.venv`) and `requirements.txt`.
