@@ -1,0 +1,17 @@
+{
+  "available_commands": ["choose", "proceed", "key", "click", "wait", "state"],
+  "ready_for_command": true,
+  "in_game": true,
+  "game_state": {
+    "screen_type": "COMBAT_REWARD",
+    "screen_name": "COMBAT_REWARD",
+    "room_phase": "COMPLETE",
+    "choice_list": ["gold", "potion", "card"],
+    "act": 1, "floor": 2, "current_hp": 70, "max_hp": 80, "gold": 112,
+    "potions": [
+      {"id": "Fire Potion", "name": "Fire Potion", "can_use": false, "can_discard": true, "requires_target": true},
+      {"id": "Block Potion", "name": "Block Potion", "can_use": false, "can_discard": true, "requires_target": false},
+      {"id": "Swift Potion", "name": "Swift Potion", "can_use": false, "can_discard": true, "requires_target": false}
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "available_commands": ["choose", "return", "key", "click", "wait", "state"],
+  "ready_for_command": true,
+  "in_game": true,
+  "game_state": {
+    "screen_type": "CARD_REWARD",
+    "screen_name": "CARD_REWARD",
+    "room_phase": "COMPLETE",
+    "choice_list": ["anger", "clothesline", "flex"],
+    "screen_state": {"cards": [], "bowl_available": false, "skip_available": true},
+    "act": 1, "floor": 1, "current_hp": 74, "max_hp": 80, "gold": 112,
+    "potions": [{"id": "Potion Slot", "name": "Potion Slot", "can_use": false, "can_discard": false, "requires_target": false}]
+  }
+}
