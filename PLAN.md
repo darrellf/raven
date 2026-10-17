@@ -38,6 +38,14 @@ Slay the Spire ─ CommunicationMod ─stdin/stdout─► raven (Python) ─HTTP
 - The harness validates every move against the real game state. Illegal moves go back to the model as errors, with a safe fallback after 3 tries.
 - **Card and relic text** isn't included in the game state. We read it from the player's own game install (the localization files in `desktop-1.0.jar`), so it's accurate and nothing copyrighted gets redistributed.
 
+## Budget
+
+- **Hard limit:** $50/month, set in the Mistral console.
+- **Per-run budget:** the harness tracks cost from token usage (thinking tokens count as output) and stops a run if it goes over a configurable limit (default $10).
+- **Cheap by default:** development and debugging use the random player or a cheap model. `mistral-large-4` is only used for real runs.
+- **Reasoning:** `mistral-large-4` supports `reasoning_effort` `"high"` or `"none"` only. With `"high"` (the default) the reply is a list of `thinking` and `text` chunks; with `"none"` it's a plain string. The brain code must handle both shapes. Plan: `"none"` for trivial decisions, `"high"` for hard ones, and in M2 compare the win rate and cost of both settings.
+- **Go/no-go checkpoint:** after Raven's first full `mistral-large-4` run, review the actual cost per run and decide whether to continue, trim or stop.
+
 ## Repo layout
 
 ```
