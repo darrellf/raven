@@ -15,6 +15,47 @@ from dotenv import load_dotenv
 
 API_URL = "https://api.mistral.ai/v1/chat/completions"
 MODEL = "mistral-large-4"
+# The model thinks before answering, and thinking counts toward this limit.
+MAX_TOKENS = 1000
+
+
+def split_content(content):
+    """Return (thinking, answer) text from a message's content.
+
+    Content is a plain string when the model doesn't think, or a list of
+    chunks: {"type": "thinking", "thinking": [text chunks]} and
+    {"type": "text", "text": ...}.
+    """
+    if content is None:
+        return "", ""
+    if isinstance(content, str):
+        return "", content
+
+    thinking, answer = [], []
+    for chunk in content:
+        if chunk.get("type") == "thinking":
+            for part in chunk.get("thinking", []):
+                if part.get("type") == "text":
+                    thinking.append(part.get("text", ""))
+        elif chunk.get("type") == "text":
+            answer.append(chunk.get("text", ""))
+    return "".join(thinking), "".join(answer)
+
+
+def usage_lines(usage):
+    """Format token usage, with thinking split out when the API reports it."""
+    completion = usage.get("completion_tokens")
+    details = usage.get("completion_tokens_details") or {}
+    reasoning = details.get("reasoning_tokens")
+
+    lines = [f"  prompt:     {usage.get('prompt_tokens')}"]
+    if reasoning is not None and completion is not None:
+        lines.append(f"  thinking:   {reasoning}")
+        lines.append(f"  answer:     {completion - reasoning}")
+    else:
+        lines.append(f"  completion: {completion} (no thinking breakdown reported)")
+    lines.append(f"  total:      {usage.get('total_tokens')}")
+    return lines
 
 
 def main() -> int:
@@ -30,9 +71,9 @@ def main() -> int:
         json={
             "model": MODEL,
             "messages": [{"role": "user", "content": "Say hi in one short sentence."}],
-            "max_tokens": 50,
+            "max_tokens": MAX_TOKENS,
         },
-        timeout=30,
+        timeout=60,
     )
     if not response.ok:
         print(f"Request failed: HTTP {response.status_code}")
@@ -40,14 +81,20 @@ def main() -> int:
         return 1
 
     data = response.json()
-    usage = data.get("usage", {})
+    choice = data["choices"][0]
+    thinking, answer = split_content(choice["message"].get("content"))
+
     print(f"Model: {data.get('model')}")
-    print(f"Reply: {data['choices'][0]['message']['content']}")
-    print(
-        f"Tokens: prompt={usage.get('prompt_tokens')} "
-        f"completion={usage.get('completion_tokens')} "
-        f"total={usage.get('total_tokens')}"
-    )
+    print(f"Finish reason: {choice.get('finish_reason')}")
+    print("Thinking:")
+    print(f"  {thinking.strip() or '(none)'}")
+    print("Answer:")
+    print(f"  {answer.strip() or '(none)'}")
+    print("Tokens:")
+    for line in usage_lines(data.get("usage", {})):
+        print(line)
+    if choice.get("finish_reason") == "length":
+        print(f"Warning: hit max_tokens ({MAX_TOKENS}) before finishing.")
     return 0
 
 
