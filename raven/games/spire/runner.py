@@ -86,12 +86,11 @@ def play_one_run(
         if message is None:
             timeouts += 1
             if timeouts > max_timeouts:
-                log.warning("stopping: no response after %d requests", max_timeouts)
+                log.warning("stopping: game not ready after %d requests", max_timeouts)
                 return RunResult("no_response", steps=steps)
-            log.info("no message for %ss, asking for state", response_timeout)
+            log.info("no ready state for %ss, asking for state", response_timeout)
             conn.send("STATE")
             continue
-        timeouts = 0
 
         if "error" in message:
             errors += 1
@@ -105,8 +104,11 @@ def play_one_run(
                     conn.send("STATE")
             continue
 
+        # A not-ready reply doesn't count as a response: a stuck game keeps
+        # answering STATE that way forever.
         if not message.get("ready_for_command"):
             continue
+        timeouts = 0
 
         key = state_key(message)
         if key == last_key and last_command:
