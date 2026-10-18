@@ -1,0 +1,42 @@
+{
+  "available_commands": ["play", "end", "potion", "key", "click", "wait", "state"],
+  "ready_for_command": true,
+  "in_game": true,
+  "game_state": {
+    "screen_type": "NONE",
+    "screen_name": "NONE",
+    "room_phase": "COMBAT",
+    "room_type": "MonsterRoom",
+    "action_phase": "WAITING_ON_USER",
+    "is_screen_up": false,
+    "choice_list": [],
+    "class": "IRONCLAD",
+    "ascension_level": 0,
+    "seed": 123,
+    "act": 1,
+    "floor": 1,
+    "current_hp": 80,
+    "max_hp": 80,
+    "gold": 99,
+    "potions": [
+      {"id": "Fire Potion", "name": "Fire Potion", "can_use": true, "can_discard": true, "requires_target": true},
+      {"id": "Block Potion", "name": "Block Potion", "can_use": true, "can_discard": true, "requires_target": false},
+      {"id": "Potion Slot", "name": "Potion Slot", "can_use": false, "can_discard": false, "requires_target": false}
+    ],
+    "combat_state": {
+      "turn": 1,
+      "player": {"current_hp": 80, "max_hp": 80, "block": 0, "energy": 3, "powers": [], "orbs": []},
+      "hand": [
+        {"id": "Strike_R", "name": "Strike", "uuid": "a1", "cost": 1, "type": "ATTACK", "is_playable": true, "has_target": true, "upgrades": 0},
+        {"id": "Defend_R", "name": "Defend", "uuid": "a2", "cost": 1, "type": "SKILL", "is_playable": true, "has_target": false, "upgrades": 0},
+        {"id": "Bash", "name": "Bash", "uuid": "a3", "cost": 2, "type": "ATTACK", "is_playable": false, "has_target": true, "upgrades": 0}
+      ],
+      "monsters": [
+        {"id": "JawWorm", "name": "Jaw Worm", "current_hp": 42, "max_hp": 42, "block": 0, "intent": "ATTACK", "is_gone": false, "half_dead": false, "powers": []},
+        {"id": "Cultist", "name": "Cultist", "current_hp": 0, "max_hp": 50, "block": 0, "intent": "NONE", "is_gone": true, "half_dead": false, "powers": []},
+        {"id": "Cultist", "name": "Cultist", "current_hp": 48, "max_hp": 48, "block": 0, "intent": "BUFF", "is_gone": false, "half_dead": false, "powers": []}
+      ],
+      "draw_pile": [], "discard_pile": [], "exhaust_pile": [], "limbo": []
+    }
+  }
+}

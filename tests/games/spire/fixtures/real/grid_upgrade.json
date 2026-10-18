@@ -1,0 +1,1185 @@
+{
+ "available_commands": [
+  "choose",
+  "key",
+  "click",
+  "wait",
+  "state"
+ ],
+ "ready_for_command": true,
+ "in_game": true,
+ "game_state": {
+  "choice_list": [
+   "strike",
+   "strike",
+   "strike",
+   "strike",
+   "strike",
+   "defend",
+   "defend",
+   "defend",
+   "defend",
+   "bash"
+  ],
+  "screen_type": "GRID",
+  "screen_state": {
+   "cards": [
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Strike",
+     "id": "Strike_R",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "7a8c74e3-ea2e-4c04-8ed5-3b2e332ef05c",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Strike",
+     "id": "Strike_R",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "bc11e2f3-07d9-4f3a-971d-89ad2d39fe42",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Strike",
+     "id": "Strike_R",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "fae3fcd8-6559-45a4-a1c8-d02f467ffced",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Strike",
+     "id": "Strike_R",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "c51f1a75-8e3b-4089-a3cb-b4bc603b56d5",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Strike",
+     "id": "Strike_R",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "72d9b873-4c9b-4e95-9d18-0eb659dbbf67",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Defend",
+     "id": "Defend_R",
+     "type": "SKILL",
+     "ethereal": false,
+     "uuid": "785a4ad6-0afa-43df-81f9-cff7a8074f27",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": false
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Defend",
+     "id": "Defend_R",
+     "type": "SKILL",
+     "ethereal": false,
+     "uuid": "0f186b8f-30a2-4c27-9ae9-4890c634daec",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": false
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Defend",
+     "id": "Defend_R",
+     "type": "SKILL",
+     "ethereal": false,
+     "uuid": "67c32fb7-ed8f-46aa-8d98-d172392f18bc",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": false
+    },
+    {
+     "exhausts": false,
+     "cost": 1,
+     "name": "Defend",
+     "id": "Defend_R",
+     "type": "SKILL",
+     "ethereal": false,
+     "uuid": "a1a3b9d6-77b1-409b-8dc6-91fbb38cce4c",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": false
+    },
+    {
+     "exhausts": false,
+     "cost": 2,
+     "name": "Bash",
+     "id": "Bash",
+     "type": "ATTACK",
+     "ethereal": false,
+     "uuid": "3789bab4-952a-4066-9673-ad8273581ac6",
+     "upgrades": 0,
+     "rarity": "BASIC",
+     "has_target": true
+    }
+   ],
+   "selected_cards": [],
+   "for_transform": false,
+   "confirm_up": false,
+   "any_number": false,
+   "for_upgrade": true,
+   "num_cards": 1,
+   "for_purge": false
+  },
+  "seed": 4893436582450844175,
+  "deck": [
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Strike",
+    "id": "Strike_R",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "7a8c74e3-ea2e-4c04-8ed5-3b2e332ef05c",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Strike",
+    "id": "Strike_R",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "bc11e2f3-07d9-4f3a-971d-89ad2d39fe42",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Strike",
+    "id": "Strike_R",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "fae3fcd8-6559-45a4-a1c8-d02f467ffced",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Strike",
+    "id": "Strike_R",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "c51f1a75-8e3b-4089-a3cb-b4bc603b56d5",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Strike",
+    "id": "Strike_R",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "72d9b873-4c9b-4e95-9d18-0eb659dbbf67",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Defend",
+    "id": "Defend_R",
+    "type": "SKILL",
+    "ethereal": false,
+    "uuid": "785a4ad6-0afa-43df-81f9-cff7a8074f27",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": false
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Defend",
+    "id": "Defend_R",
+    "type": "SKILL",
+    "ethereal": false,
+    "uuid": "0f186b8f-30a2-4c27-9ae9-4890c634daec",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": false
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Defend",
+    "id": "Defend_R",
+    "type": "SKILL",
+    "ethereal": false,
+    "uuid": "67c32fb7-ed8f-46aa-8d98-d172392f18bc",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": false
+   },
+   {
+    "exhausts": false,
+    "cost": 1,
+    "name": "Defend",
+    "id": "Defend_R",
+    "type": "SKILL",
+    "ethereal": false,
+    "uuid": "a1a3b9d6-77b1-409b-8dc6-91fbb38cce4c",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": false
+   },
+   {
+    "exhausts": false,
+    "cost": 2,
+    "name": "Bash",
+    "id": "Bash",
+    "type": "ATTACK",
+    "ethereal": false,
+    "uuid": "3789bab4-952a-4066-9673-ad8273581ac6",
+    "upgrades": 0,
+    "rarity": "BASIC",
+    "has_target": true
+   }
+  ],
+  "relics": [
+   {
+    "name": "Burning Blood",
+    "id": "Burning Blood",
+    "counter": -1
+   }
+  ],
+  "max_hp": 80,
+  "act_boss": "The Guardian",
+  "gold": 99,
+  "action_phase": "WAITING_ON_USER",
+  "act": 1,
+  "screen_name": "GRID",
+  "room_phase": "EVENT",
+  "is_screen_up": true,
+  "potions": [
+   {
+    "requires_target": false,
+    "can_use": false,
+    "can_discard": false,
+    "name": "Potion Slot",
+    "id": "Potion Slot"
+   },
+   {
+    "requires_target": false,
+    "can_use": false,
+    "can_discard": false,
+    "name": "Potion Slot",
+    "id": "Potion Slot"
+   },
+   {
+    "requires_target": false,
+    "can_use": false,
+    "can_discard": false,
+    "name": "Potion Slot",
+    "id": "Potion Slot"
+   }
+  ],
+  "current_hp": 80,
+  "floor": 0,
+  "ascension_level": 0,
+  "class": "IRONCLAD",
+  "map": [
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 1
+     },
+     {
+      "x": 1,
+      "y": 1
+     }
+    ],
+    "x": 0,
+    "y": 0,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 1
+     }
+    ],
+    "x": 2,
+    "y": 0,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 4,
+      "y": 1
+     }
+    ],
+    "x": 3,
+    "y": 0,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 6,
+      "y": 1
+     }
+    ],
+    "x": 5,
+    "y": 0,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 2
+     }
+    ],
+    "x": 0,
+    "y": 1,
+    "parents": []
+   },
+   {
+    "symbol": "$",
+    "children": [
+     {
+      "x": 1,
+      "y": 2
+     }
+    ],
+    "x": 1,
+    "y": 1,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 3,
+      "y": 2
+     }
+    ],
+    "x": 3,
+    "y": 1,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 4,
+      "y": 2
+     }
+    ],
+    "x": 4,
+    "y": 1,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 6,
+      "y": 2
+     }
+    ],
+    "x": 6,
+    "y": 1,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 1,
+      "y": 3
+     }
+    ],
+    "x": 0,
+    "y": 2,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 1,
+      "y": 3
+     }
+    ],
+    "x": 1,
+    "y": 2,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 2,
+      "y": 3
+     }
+    ],
+    "x": 3,
+    "y": 2,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 3,
+      "y": 3
+     }
+    ],
+    "x": 4,
+    "y": 2,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 5,
+      "y": 3
+     }
+    ],
+    "x": 6,
+    "y": 2,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 4
+     },
+     {
+      "x": 1,
+      "y": 4
+     }
+    ],
+    "x": 1,
+    "y": 3,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 1,
+      "y": 4
+     }
+    ],
+    "x": 2,
+    "y": 3,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 4,
+      "y": 4
+     }
+    ],
+    "x": 3,
+    "y": 3,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 4,
+      "y": 4
+     }
+    ],
+    "x": 5,
+    "y": 3,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 5
+     }
+    ],
+    "x": 0,
+    "y": 4,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 1,
+      "y": 5
+     },
+     {
+      "x": 2,
+      "y": 5
+     }
+    ],
+    "x": 1,
+    "y": 4,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 5
+     },
+     {
+      "x": 4,
+      "y": 5
+     },
+     {
+      "x": 5,
+      "y": 5
+     }
+    ],
+    "x": 4,
+    "y": 4,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 0,
+      "y": 6
+     }
+    ],
+    "x": 0,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "E",
+    "children": [
+     {
+      "x": 1,
+      "y": 6
+     }
+    ],
+    "x": 1,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 1,
+      "y": 6
+     }
+    ],
+    "x": 2,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "E",
+    "children": [
+     {
+      "x": 4,
+      "y": 6
+     }
+    ],
+    "x": 3,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 4,
+      "y": 6
+     }
+    ],
+    "x": 4,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 6,
+      "y": 6
+     }
+    ],
+    "x": 5,
+    "y": 5,
+    "parents": []
+   },
+   {
+    "symbol": "E",
+    "children": [
+     {
+      "x": 0,
+      "y": 7
+     }
+    ],
+    "x": 0,
+    "y": 6,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 0,
+      "y": 7
+     },
+     {
+      "x": 2,
+      "y": 7
+     }
+    ],
+    "x": 1,
+    "y": 6,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 7
+     },
+     {
+      "x": 4,
+      "y": 7
+     }
+    ],
+    "x": 4,
+    "y": 6,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 5,
+      "y": 7
+     }
+    ],
+    "x": 6,
+    "y": 6,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 0,
+      "y": 8
+     },
+     {
+      "x": 1,
+      "y": 8
+     }
+    ],
+    "x": 0,
+    "y": 7,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 8
+     }
+    ],
+    "x": 2,
+    "y": 7,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 3,
+      "y": 8
+     }
+    ],
+    "x": 3,
+    "y": 7,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 4,
+      "y": 8
+     }
+    ],
+    "x": 4,
+    "y": 7,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 4,
+      "y": 8
+     }
+    ],
+    "x": 5,
+    "y": 7,
+    "parents": []
+   },
+   {
+    "symbol": "T",
+    "children": [
+     {
+      "x": 0,
+      "y": 9
+     }
+    ],
+    "x": 0,
+    "y": 8,
+    "parents": []
+   },
+   {
+    "symbol": "T",
+    "children": [
+     {
+      "x": 1,
+      "y": 9
+     }
+    ],
+    "x": 1,
+    "y": 8,
+    "parents": []
+   },
+   {
+    "symbol": "T",
+    "children": [
+     {
+      "x": 2,
+      "y": 9
+     },
+     {
+      "x": 4,
+      "y": 9
+     }
+    ],
+    "x": 3,
+    "y": 8,
+    "parents": []
+   },
+   {
+    "symbol": "T",
+    "children": [
+     {
+      "x": 4,
+      "y": 9
+     },
+     {
+      "x": 5,
+      "y": 9
+     }
+    ],
+    "x": 4,
+    "y": 8,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 10
+     }
+    ],
+    "x": 0,
+    "y": 9,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 10
+     }
+    ],
+    "x": 1,
+    "y": 9,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 1,
+      "y": 10
+     }
+    ],
+    "x": 2,
+    "y": 9,
+    "parents": []
+   },
+   {
+    "symbol": "E",
+    "children": [
+     {
+      "x": 3,
+      "y": 10
+     },
+     {
+      "x": 4,
+      "y": 10
+     }
+    ],
+    "x": 4,
+    "y": 9,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 5,
+      "y": 10
+     }
+    ],
+    "x": 5,
+    "y": 9,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 0,
+      "y": 11
+     }
+    ],
+    "x": 0,
+    "y": 10,
+    "parents": []
+   },
+   {
+    "symbol": "$",
+    "children": [
+     {
+      "x": 0,
+      "y": 11
+     }
+    ],
+    "x": 1,
+    "y": 10,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 3,
+      "y": 11
+     }
+    ],
+    "x": 3,
+    "y": 10,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 11
+     }
+    ],
+    "x": 4,
+    "y": 10,
+    "parents": []
+   },
+   {
+    "symbol": "E",
+    "children": [
+     {
+      "x": 6,
+      "y": 11
+     }
+    ],
+    "x": 5,
+    "y": 10,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 0,
+      "y": 12
+     },
+     {
+      "x": 1,
+      "y": 12
+     }
+    ],
+    "x": 0,
+    "y": 11,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 3,
+      "y": 12
+     },
+     {
+      "x": 4,
+      "y": 12
+     }
+    ],
+    "x": 3,
+    "y": 11,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 6,
+      "y": 12
+     }
+    ],
+    "x": 6,
+    "y": 11,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 1,
+      "y": 13
+     }
+    ],
+    "x": 0,
+    "y": 12,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 2,
+      "y": 13
+     }
+    ],
+    "x": 1,
+    "y": 12,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 13
+     }
+    ],
+    "x": 3,
+    "y": 12,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 5,
+      "y": 13
+     }
+    ],
+    "x": 4,
+    "y": 12,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 6,
+      "y": 13
+     }
+    ],
+    "x": 6,
+    "y": 12,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 0,
+      "y": 14
+     }
+    ],
+    "x": 1,
+    "y": 13,
+    "parents": []
+   },
+   {
+    "symbol": "$",
+    "children": [
+     {
+      "x": 2,
+      "y": 14
+     },
+     {
+      "x": 3,
+      "y": 14
+     }
+    ],
+    "x": 2,
+    "y": 13,
+    "parents": []
+   },
+   {
+    "symbol": "M",
+    "children": [
+     {
+      "x": 3,
+      "y": 14
+     }
+    ],
+    "x": 3,
+    "y": 13,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 6,
+      "y": 14
+     }
+    ],
+    "x": 5,
+    "y": 13,
+    "parents": []
+   },
+   {
+    "symbol": "?",
+    "children": [
+     {
+      "x": 6,
+      "y": 14
+     }
+    ],
+    "x": 6,
+    "y": 13,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 3,
+      "y": 16
+     }
+    ],
+    "x": 0,
+    "y": 14,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 3,
+      "y": 16
+     }
+    ],
+    "x": 2,
+    "y": 14,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 3,
+      "y": 16
+     }
+    ],
+    "x": 3,
+    "y": 14,
+    "parents": []
+   },
+   {
+    "symbol": "R",
+    "children": [
+     {
+      "x": 3,
+      "y": 16
+     }
+    ],
+    "x": 6,
+    "y": 14,
+    "parents": []
+   }
+  ],
+  "room_type": "NeowRoom"
+ }
+}

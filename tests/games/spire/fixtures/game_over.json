@@ -1,0 +1,14 @@
+{
+  "available_commands": ["proceed", "key", "click", "wait", "state"],
+  "ready_for_command": true,
+  "in_game": true,
+  "game_state": {
+    "screen_type": "GAME_OVER",
+    "screen_name": "DEATH",
+    "room_phase": "COMBAT",
+    "screen_state": {"score": 123, "victory": false},
+    "choice_list": [],
+    "act": 1, "floor": 7, "current_hp": 0, "max_hp": 80, "gold": 140,
+    "potions": []
+  }
+}
