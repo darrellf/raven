@@ -116,3 +116,26 @@ def test_step_limit(state):
         messages.append(message)
     _, result = run(messages, max_steps=5)
     assert (result.outcome, result.steps) == ("step_limit", 5)
+
+
+def test_gives_up_when_the_game_stays_not_ready(state):
+    # Replays the real hang: after the Neow upgrade's confirm step, the game
+    # answered every STATE with ready_for_command false.
+    stuck = state("real/grid_upgrade")
+    stuck["ready_for_command"] = False
+    messages = [state("main_menu"), state("real/grid_upgrade"), state("real/grid_upgrade_confirm")]
+    messages += [TIMEOUT, stuck] * 10
+    conn, result = run(messages, max_timeouts=3)
+    assert result.outcome == "no_response"
+    assert conn.sent[2] == "PROCEED"  # confirm, never cancel
+    assert conn.sent[3:] == ["STATE"] * 3
+
+
+def test_ready_state_resets_the_timeout_count(state):
+    card_reward = state("card_reward")
+    messages = [state("main_menu")]
+    for _ in range(4):
+        messages += [TIMEOUT, TIMEOUT, card_reward]
+    messages.append(state("game_over"))
+    _, result = run(messages, max_timeouts=2)
+    assert result.outcome == "death"

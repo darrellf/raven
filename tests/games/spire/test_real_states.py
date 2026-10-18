@@ -37,8 +37,9 @@ EXPECTED = {
     "combat_two_gremlins_gone": ["END"],
     "game_over": ["PROCEED"],
     "grid_upgrade": [f"CHOOSE {i}" for i in range(10)],
-    # "confirm" and "cancel" are the game's names for PROCEED and RETURN here.
-    "grid_upgrade_confirm": ["PROCEED", "RETURN"],
+    # "confirm" is the game's name for PROCEED here. "cancel" is left out:
+    # cancelling this step left the real game stuck.
+    "grid_upgrade_confirm": ["PROCEED"],
 }
 
 
@@ -64,3 +65,9 @@ def test_random_player_picks_legal_commands_on_real_states(state, name):
     player = RandomPlayer(random.Random(name))
     for _ in range(30):
         assert player.choose(message) in EXPECTED[name]
+
+
+def test_cancel_offered_on_a_grid_before_confirming(state):
+    message = state("real/grid_upgrade")
+    message["available_commands"].append("cancel")
+    assert "RETURN" in legal_commands(message)

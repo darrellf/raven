@@ -90,7 +90,12 @@ def legal_commands(message):
         commands.extend(_choose_commands(game_state))
     if available & PROCEED_NAMES:
         commands.append("PROCEED")
-    if available & RETURN_NAMES:
+    # Cancelling a card grid's confirm step leaves the game stuck, never
+    # ready for another command, so only confirm there.
+    grid_confirm = game_state.get("screen_type") == "GRID" and (
+        game_state.get("screen_state") or {}
+    ).get("confirm_up")
+    if available & RETURN_NAMES and not grid_confirm:
         commands.append("RETURN")
     return commands
 
