@@ -72,6 +72,23 @@ def _choose_commands(game_state):
     return commands
 
 
+def is_grid(message):
+    return (message.get("game_state") or {}).get("screen_type") == "GRID"
+
+
+def is_stuck_grid_confirm(message):
+    """A card grid's confirm step that the game reports as not ready.
+
+    After a card is picked for upgrade, the confirm step comes up but
+    CommunicationMod doesn't notice and keeps saying it isn't ready.
+    """
+    if message.get("ready_for_command") or not message.get("in_game"):
+        return False
+    available = {c.lower() for c in message.get("available_commands", [])}
+    screen = (message.get("game_state") or {}).get("screen_state") or {}
+    return is_grid(message) and bool(screen.get("confirm_up")) and bool(available & PROCEED_NAMES)
+
+
 def legal_commands(message):
     """Every legal command for a state message, as strings ready to send."""
     if not message.get("in_game") or not message.get("ready_for_command"):
@@ -92,9 +109,9 @@ def legal_commands(message):
         commands.append("PROCEED")
     # Cancelling a card grid's confirm step leaves the game stuck, never
     # ready for another command, so only confirm there.
-    grid_confirm = game_state.get("screen_type") == "GRID" and (
-        game_state.get("screen_state") or {}
-    ).get("confirm_up")
+    grid_confirm = is_grid(message) and (game_state.get("screen_state") or {}).get(
+        "confirm_up"
+    )
     if available & RETURN_NAMES and not grid_confirm:
         commands.append("RETURN")
     return commands
