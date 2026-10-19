@@ -14,6 +14,7 @@ class ScriptedConnection:
     def __init__(self, messages):
         self.messages = list(messages)
         self.sent = []
+        self.timeouts = []
         self.started = False
 
     def start(self):
@@ -23,6 +24,7 @@ class ScriptedConnection:
         self.sent.append(command)
 
     def receive(self, timeout=None):
+        self.timeouts.append(timeout)
         if not self.messages:
             raise GameClosed()
         message = self.messages.pop(0)
@@ -139,3 +141,57 @@ def test_ready_state_resets_the_timeout_count(state):
     messages.append(state("game_over"))
     _, result = run(messages, max_timeouts=2)
     assert result.outcome == "death"
+
+
+def stuck_rest_upgrade(state):
+    """The real sequence from a rest site where the game froze at confirm."""
+    grid = state("real/grid_rest_upgrade")
+    grid["available_commands"].remove("cancel")  # so the player picks a card
+    return [
+        state("main_menu"),
+        state("real/rest_site"),
+        grid,
+        TIMEOUT,  # the game sends nothing after a card is picked
+        state("real/grid_rest_upgrade_stuck"),  # reply to STATE: not ready
+    ]
+
+
+def test_confirms_a_stuck_grid_confirm_step(state):
+    messages = stuck_rest_upgrade(state) + [state("real/rest_site_done"), state("game_over")]
+    conn, result = run(messages)
+    assert conn.sent[2].startswith("CHOOSE")  # picks a card on the grid
+    assert conn.sent[3:] == ["STATE", "PROCEED", "PROCEED"]  # nudge, then leave rest site
+    assert result.outcome == "death"
+
+
+def test_short_wait_after_picking_on_a_grid(state):
+    messages = stuck_rest_upgrade(state) + [state("real/rest_site_done"), state("game_over")]
+    conn, _ = run(messages, response_timeout=30.0, grid_timeout=3.0)
+    # receive calls: menu, rest site, grid, (timeout), stuck, rest done, game over
+    assert conn.timeouts[3:6] == [3.0, 3.0, 3.0]  # from the grid pick to a ready state
+    assert conn.timeouts[2] == 30.0 and conn.timeouts[6] == 30.0
+
+
+def test_confirm_nudges_are_limited(state):
+    stuck = state("real/grid_rest_upgrade_stuck")
+    messages = stuck_rest_upgrade(state) + [TIMEOUT, stuck] * 10
+    conn, result = run(messages, max_confirm_nudges=2, max_timeouts=4)
+    assert conn.sent.count("PROCEED") == 2
+    assert result.outcome == "no_response"
+
+
+def test_refused_confirm_waits_instead_of_acting_on_an_old_state(state):
+    error = {"error": "Not ready", "ready_for_command": True}
+    messages = stuck_rest_upgrade(state) + [error, state("real/rest_site_done"), state("game_over")]
+    conn, result = run(messages)
+    # After the refusal nothing is sent until the next ready state.
+    assert conn.sent[3:] == ["STATE", "PROCEED", "PROCEED"]
+    assert result.outcome == "death"
+
+
+def test_not_ready_grid_without_confirm_is_not_nudged(state):
+    stuck = state("real/grid_upgrade")
+    stuck["ready_for_command"] = False
+    messages = [state("main_menu"), state("real/grid_upgrade"), TIMEOUT, stuck, TIMEOUT, stuck]
+    conn, _ = run(messages, max_timeouts=2)
+    assert "PROCEED" not in conn.sent
