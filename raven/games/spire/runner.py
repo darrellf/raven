@@ -5,6 +5,7 @@ import json
 import logging
 from dataclasses import dataclass
 
+from raven.games.spire.actions import is_grid, is_stuck_grid_confirm
 from raven.games.spire.protocol import GameClosed
 
 log = logging.getLogger(__name__)
@@ -46,11 +47,17 @@ def play_one_run(
     response_timeout=30.0,
     max_timeouts=5,
     max_errors=20,
+    grid_timeout=3.0,
+    max_confirm_nudges=3,
 ):
     """Drive one run with `player` and return a RunResult.
 
     A command that gets an error, or leaves the state exactly as it was, is
     avoided the next time that state comes up.
+
+    After picking a card on a grid, the game often goes quiet at the confirm
+    step and reports not ready, so we ask for state after `grid_timeout`
+    seconds and press confirm ourselves, up to `max_confirm_nudges` times.
     """
     conn.start()
     started = False
@@ -61,9 +68,12 @@ def play_one_run(
     last_key = None
     last_command = None
     avoid = {}  # state key -> commands that failed or did nothing there
+    waiting_on_grid = False  # just picked a card on a grid
+    nudges = 0  # confirms sent while the game said it wasn't ready
+    nudged = False
 
     def act(message):
-        nonlocal last_command, steps
+        nonlocal last_command, steps, waiting_on_grid
         key = state_key(message)
         command = player.choose(message, avoid=avoid.get(key, set()))
         if command is None:
@@ -71,6 +81,7 @@ def play_one_run(
         conn.send(command)
         last_command = command
         steps += 1
+        waiting_on_grid = is_grid(message) and command.startswith("CHOOSE")
         return True
 
     while True:
@@ -78,8 +89,9 @@ def play_one_run(
             log.warning("stopping: step limit %d reached", max_steps)
             return RunResult("step_limit", steps=steps)
 
+        timeout = grid_timeout if waiting_on_grid else response_timeout
         try:
-            message = conn.receive(timeout=response_timeout)
+            message = conn.receive(timeout=timeout)
         except GameClosed:
             return RunResult("game_closed", steps=steps)
 
@@ -88,7 +100,7 @@ def play_one_run(
             if timeouts > max_timeouts:
                 log.warning("stopping: game not ready after %d requests", max_timeouts)
                 return RunResult("no_response", steps=steps)
-            log.info("no ready state for %ss, asking for state", response_timeout)
+            log.info("no ready state for %ss, asking for state", timeout)
             conn.send("STATE")
             continue
 
@@ -97,6 +109,11 @@ def play_one_run(
             if errors > max_errors:
                 log.warning("stopping: %d errors in a row", max_errors)
                 return RunResult("stuck", steps=steps)
+            if nudged:
+                # The game refused our confirm; keep waiting for it instead.
+                log.warning("game refused confirm while not ready")
+                nudged = False
+                continue
             if last_key and last_command:
                 avoid.setdefault(last_key, set()).add(last_command)
             if message.get("ready_for_command") and last_message:
@@ -107,8 +124,16 @@ def play_one_run(
         # A not-ready reply doesn't count as a response: a stuck game keeps
         # answering STATE that way forever.
         if not message.get("ready_for_command"):
+            if is_stuck_grid_confirm(message) and nudges < max_confirm_nudges:
+                nudges += 1
+                log.info("grid confirm is up but game says not ready, confirming")
+                conn.send("PROCEED")
+                nudged = True
             continue
         timeouts = 0
+        nudges = 0
+        nudged = False
+        waiting_on_grid = False
 
         key = state_key(message)
         if key == last_key and last_command:

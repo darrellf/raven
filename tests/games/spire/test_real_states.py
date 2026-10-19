@@ -4,7 +4,7 @@ import random
 
 import pytest
 
-from raven.games.spire.actions import legal_commands
+from raven.games.spire.actions import is_stuck_grid_confirm, legal_commands
 from raven.games.spire.random_player import RandomPlayer
 
 EXPECTED = {
@@ -40,6 +40,13 @@ EXPECTED = {
     # "confirm" is the game's name for PROCEED here. "cancel" is left out:
     # cancelling this step left the real game stuck.
     "grid_upgrade_confirm": ["PROCEED"],
+    "rest_site": ["CHOOSE 0", "CHOOSE 1"],
+    # Smith's upgrade grid: 12 cards in the deck, and cancel is allowed here.
+    "grid_rest_upgrade": [f"CHOOSE {i}" for i in range(12)] + ["RETURN"],
+    # The game reports this confirm step as not ready, so nothing is legal.
+    # The runner presses confirm itself (see test_runner.py).
+    "grid_rest_upgrade_stuck": [],
+    "rest_site_done": ["PROCEED"],
 }
 
 
@@ -64,10 +71,21 @@ def test_random_player_picks_legal_commands_on_real_states(state, name):
     message = state(f"real/{name}")
     player = RandomPlayer(random.Random(name))
     for _ in range(30):
-        assert player.choose(message) in EXPECTED[name]
+        choice = player.choose(message)
+        assert choice in EXPECTED[name] or (choice is None and not EXPECTED[name])
 
 
 def test_cancel_offered_on_a_grid_before_confirming(state):
     message = state("real/grid_upgrade")
     message["available_commands"].append("cancel")
     assert "RETURN" in legal_commands(message)
+
+
+def test_stuck_grid_confirm_is_recognised(state):
+    assert is_stuck_grid_confirm(state("real/grid_rest_upgrade_stuck"))
+    # Ready states, and a grid without its confirm step up, aren't stuck.
+    assert not is_stuck_grid_confirm(state("real/grid_upgrade_confirm"))
+    assert not is_stuck_grid_confirm(state("real/grid_rest_upgrade"))
+    not_ready_pick = state("real/grid_rest_upgrade")
+    not_ready_pick["ready_for_command"] = False
+    assert not is_stuck_grid_confirm(not_ready_pick)
